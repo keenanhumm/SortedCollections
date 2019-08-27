@@ -30,5 +30,34 @@ public class Main {
 
         System.out.println(stockList);
 
+        Basket basket = new Basket("Keenan");
+
+        sellItem(basket, "car", 1);
+        System.out.println(basket);
+
+        sellItem(basket, "car", 1);
+        sellItem(basket, "hotdog", 1);
+        System.out.println(basket);
+
+        sellItem(basket, "juice", 2);
+        sellItem(basket, "cup", 20);
+        sellItem(basket, "bread", 2);
+        System.out.println(basket);
+
+        System.out.println(stockList);
+
+
+    }
+    public static int sellItem(Basket basket, String item, int quantity) {
+        StockItem stockItem = stockList.get(item);
+        if(stockItem == null) {
+            System.out.println("We don't sell " + item);
+            return 0;
+        }
+        if(stockList.sellStock(item, quantity) != 0) {
+            basket.addToBasket(stockItem, quantity);
+            return quantity;
+        }
+        return 0;
     }
 }
